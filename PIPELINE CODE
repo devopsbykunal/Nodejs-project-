@@ -1,0 +1,34 @@
+pipeline {
+    agent any
+    
+    stages {
+        stage('checkout') {
+            steps {
+                git 'https://github.com/devopsbykunal/Nodejs-project-.git'
+            }
+        }
+        stage('build') {
+            steps { 
+                sh 'docker build -t kunal:v1 .'
+        }
+    }
+    stage('tag') {
+        steps {
+            sh 'docker tag $image $repo'
+        }
+    }
+    stage('push') {
+        steps {
+            sh 'docker login -u joshikunal -p $password'
+            sh 'docker push $repo'
+        }
+    }
+    
+  } 
+
+}
+    
+  
+  
+
+        
