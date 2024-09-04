@@ -1,6 +1,9 @@
 version: '3'
 services:
-  node-app:
-    build: .
+  nodeapp:
+    image: joshikunal/nodeproject:latest
     ports:
       - "3000:3000"
+    environment:
+      - NODE_ENV=production
+    restart: always
